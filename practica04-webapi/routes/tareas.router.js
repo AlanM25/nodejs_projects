@@ -8,4 +8,13 @@ router.get("/", async (req, res) => {
     res.json(await tareasService.obtenerTodas());
 });
 
+router.post("/", async (req, res) => {
+    const tareasService = new TareasService();
+    const tarea = req.body;
+    //TODO: Validar datos de la tarea
+    const idTarea = await tareasService.guardarNueva(tarea);
+    //Siempre debemos que responder algo al cliente
+    res.status(201).json({ message: "Tarea creada exitosamente", idTarea });
+});
+
 module.exports = router;
