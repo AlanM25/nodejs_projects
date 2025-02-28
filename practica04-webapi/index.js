@@ -14,10 +14,12 @@
  *  Nodemone se encargará de reiniciar el servicio automáticamente al guardar
 */
 const express = require("express");
+const cors = require("cors")
 const routerApi = require("./routes");//No le ponemos "/index" porque ya lo supone
 const app = express();
 const PORT = 3001;
 
+app.use(cors());
 app.use(express.json())
 
 app.get("/", (req, res) =>{
