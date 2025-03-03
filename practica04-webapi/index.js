@@ -16,11 +16,30 @@
 const express = require("express");
 const cors = require("cors")
 const routerApi = require("./routes");//No le ponemos "/index" porque ya lo supone
+const requestLogger = require("./middleware/requestLogger");
 const app = express();
 const PORT = 3001;
 
 app.use(cors());
 app.use(express.json())
+
+
+app.use((req, res, next) => {
+     console.log("Middleware para autenticacion");
+     req.username = "usuario_x";
+     next();
+});
+
+app.use((req, res, next) => {
+    try {
+        next();
+    } catch (err) {
+        res.status(500).json({message: "error"});
+    }
+    console.log("Este middleware se debería ejecutar al ultimo");
+});
+
+app.use(requestLogger);
 
 app.get("/", (req, res) =>{
     res.send("Hola desde Express");
