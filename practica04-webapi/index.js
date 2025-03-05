@@ -17,6 +17,8 @@ const express = require("express");
 const cors = require("cors")
 const routerApi = require("./routes");//No le ponemos "/index" porque ya lo supone
 const requestLogger = require("./middleware/requestLogger");
+const auth = require("./middleware/auth")
+
 const app = express();
 const PORT = 3001;
 
@@ -30,6 +32,11 @@ app.use((req, res, next) => {
      next();
 });
 
+app.use(requestLogger);
+
+app.use("/", auth);
+app.use("/json", auth);
+
 app.use((req, res, next) => {
     try {
         next();
@@ -38,8 +45,6 @@ app.use((req, res, next) => {
     }
     console.log("Este middleware se debería ejecutar al ultimo");
 });
-
-app.use(requestLogger);
 
 app.get("/", (req, res) =>{
     res.send("Hola desde Express");
