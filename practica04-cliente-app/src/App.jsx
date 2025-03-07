@@ -95,39 +95,47 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <div className="card">
+      <div className="cardR">
         <h2>Registro de Usuario</h2>
         <input 
           type="text" 
           placeholder="Nombre" 
           value={nombreUser} 
           onChange={(e) => setNombre(e.target.value)} 
+          className="inputs"
         />
         <input 
           type="text" 
           placeholder="Apellidos" 
           value={apellidosUser} 
           onChange={(e) => setApellidos(e.target.value)} 
+          className="inputs"
         />
         <input 
           type="text" 
           placeholder="Username" 
           value={usernameUser} 
           onChange={(e) => setUsername(e.target.value)} 
+          className="inputs"
         />
         <input 
           type="password" 
           placeholder="Password" 
           value={passwordUser} 
           onChange={(e) => setPassword(e.target.value)} 
+          className="inputs"
         />
         <input 
           type="password" 
           placeholder="Confirmar Password" 
           value={confirmPasswordUser} 
           onChange={(e) => setConfirmPassword(e.target.value)} 
+          className="inputs"
         />
-        <button onClick={() => registrarUsuario()}>
+        <button 
+          onClick={() => registrarUsuario()} 
+          className="btnRegistro"
+        >
           Registrar Usuario
         </button>
       </div>
