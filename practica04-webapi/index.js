@@ -26,25 +26,25 @@ app.use(cors());
 app.use(express.json())
 
 
-app.use((req, res, next) => {
-     console.log("Middleware para autenticacion");
-     req.username = "usuario_x";
-     next();
-});
+// app.use((req, res, next) => {
+    //  console.log("Middleware para autenticacion");
+    //  req.username = "usuario_x";
+    //  next();
+// });
 
-app.use(requestLogger);
+//app.use(requestLogger);
 
-app.use("/", auth);
-app.use("/json", auth);
+// app.use("/", auth);
+// app.use("/json", auth);
 
-app.use((req, res, next) => {
-    try {
-        next();
-    } catch (err) {
-        res.status(500).json({message: "error"});
-    }
-    console.log("Este middleware se debería ejecutar al ultimo");
-});
+// app.use((req, res, next) => {
+    // try {
+        // next();
+    // } catch (err) {
+        // res.status(500).json({message: "error"});
+    // }
+    // console.log("Este middleware se debería ejecutar al ultimo");
+// });
 
 app.get("/", (req, res) =>{
     res.send("Hola desde Express");
